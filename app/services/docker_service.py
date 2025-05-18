@@ -9,12 +9,14 @@ import yaml
 from core.config import get_settings
 from services.db_service import DatabaseService
 from services.docker_templates import DOCKER_TEMPLATES
+from services.laravel_service import LaravelService
 
 settings = get_settings()
 
 class DockerService:
     def __init__(self):
         self.user_base_path = pathlib.Path(settings.USER_BASE_PATH)
+        self.project_root_path = pathlib.Path(__file__).parent
         self.db_service = DatabaseService(
             host=settings.DB_HOST,
             user=settings.DB_USER,
@@ -38,6 +40,7 @@ class DockerService:
         # Crear estructura de directorios
         (target_dir / "data").mkdir(parents=True, exist_ok=True)
         (target_dir / "filebrowser_data").mkdir(exist_ok=True)
+        (target_dir / "scripts").mkdir(exist_ok=True)  # Asegurar que exista el directorio de scripts
         
         return target_dir, username
 
@@ -121,19 +124,12 @@ class DockerService:
             
             # Preparar variables adicionales
             env_vars = {}
+            scripts_dir = target_dir / "scripts"  # Ya creado en _ensure_path
             
             # Para proyectos Laravel, crear el script de inicio
             if tipo_servicio == "Laravel":
-                # Crear el directorio de scripts si no existe
-                scripts_dir = target_dir / "scripts"
-                scripts_dir.mkdir(exist_ok=True)
-                
-                # Copiar el script de inicio de Laravel
-                laravel_script_src = pathlib.Path(__file__).parent / "scripts" / "laravel_startup.sh"
+                laravel_script_src = self.project_root_path / "scripts" / "laravel_startup.sh"
                 laravel_script_dst = scripts_dir / "laravel_startup.sh"
-                
-                # Asegurarnos que el directorio source existe
-                pathlib.Path(laravel_script_src).parent.mkdir(exist_ok=True)
                 
                 # Si el script no existe en el directorio de origen, crearlo
                 if not laravel_script_src.exists():
@@ -150,8 +146,18 @@ class DockerService:
                 # Copiar el script al directorio del proyecto
                 shutil.copy2(laravel_script_src, laravel_script_dst)
                 laravel_script_dst.chmod(0o755)
-                
                 print(f"Laravel startup script copiado a: {laravel_script_dst}")
+            
+            elif tipo_servicio == "React":
+                # Asegúrate de que react_startup.sh exista en tu directorio de scripts del proyecto
+                react_script_src = self.project_root_path / "scripts" / "react_startup.sh"
+                if not react_script_src.exists():
+                    raise FileNotFoundError(f"Script de inicio para React no encontrado en {react_script_src}")
+                
+                react_script_dst = scripts_dir / "react_startup.sh"
+                shutil.copy2(react_script_src, react_script_dst)
+                react_script_dst.chmod(0o755) # Dar permisos de ejecución
+                print(f"React startup script copiado a: {react_script_dst}")
             
             # Generar el docker-compose.yml con los valores del usuario y servicio
             compose_text = template.format(username=username, webname=webname)
@@ -196,23 +202,23 @@ class DockerService:
                 labels = service_config.get('labels', {})
                 
                 # Preparar environment (combinar variables específicas del servicio con las detectadas)
-                environment = service_config.get('environment', {})
-                if isinstance(environment, list):
-                    # Convertir lista de variables a diccionario
+                current_service_env = service_config.get('environment', {})
+                if isinstance(current_service_env, list):
                     env_dict = {}
-                    for env_item in environment:
+                    for env_item in current_service_env:
                         if isinstance(env_item, str) and '=' in env_item:
                             key, value = env_item.split('=', 1)
                             env_dict[key] = value
-                    # Agregar variables adicionales
-                    for key, value in env_vars.items():
-                        if key not in env_dict:
-                            env_dict[key] = value
-                    # Convertir de nuevo a lista
-                    environment = [f"{key}={value}" for key, value in env_dict.items()]
-                else:
-                    # Es un diccionario, simplemente actualizar
-                    environment.update(env_vars)
+                    current_service_env = env_dict # Convertir a dict para más fácil manipulación
+                
+                # Agregar/actualizar variables globales (como del script Laravel)
+                current_service_env.update(env_vars)
+
+                # Agregar WEB_SUBPATH para servicios React (específicamente el servicio de la app principal)
+                if tipo_servicio == "React" and service_name == f"{username}-{webname}": # Específico para el contenedor de la app
+                    current_service_env['WEB_SUBPATH'] = f'/{webname}/'
+                    # Asegurar que node environment es development para el servidor de desarrollo vite
+                    current_service_env['NODE_ENV'] = 'development'
                 
                 ports = {}
                 if 'ports' in service_config:
@@ -229,7 +235,7 @@ class DockerService:
                     name=container_name,
                     detach=True,
                     volumes=volumes,
-                    environment=environment,
+                    environment=current_service_env, # Pasar el environment modificado
                     ports=ports,
                     labels=labels,
                     network=networks[0] if networks else None,
@@ -254,6 +260,9 @@ class DockerService:
                 }
             }
         except Exception as e:
+            print(f"Error detallado en create_service: {e}")
+            import traceback
+            traceback.print_exc()  # Imprime el stack trace completo
             return {
                 "status": "error",
                 "message": f"Error creando servicio: {str(e)}"

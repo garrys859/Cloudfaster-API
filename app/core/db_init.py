@@ -118,7 +118,8 @@ def initialize_database():
         (4, 'Node.js', 'Node.js application'),
         (5, 'MySQL', 'MySQL database'),
         (6, 'MariaDB', 'MariaDB database'),
-        (7, 'Python', 'Python application with FastAPI or Flask');
+        (7, 'Python', 'Python application with FastAPI or Flask'),
+        (8, 'React', 'React application with Vite');
     """
     execute_query(connection, insert_default_webtypes)
 

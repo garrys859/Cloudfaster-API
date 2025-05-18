@@ -16,6 +16,7 @@ class ServicioTipo(str, Enum):
     PHP = "PHP"
     LARAVEL = "Laravel"
     NODEJS = "Node.js"
+    REACT = "React"
     MYSQL = "Mysql"
     MARIADB = "Mariadb"
     PYTHON = "Python"

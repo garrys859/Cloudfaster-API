@@ -76,7 +76,7 @@ services:
       - ./data:/var/www/html/{webname}
       - ./scripts:/scripts
     environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html/{webname}/public
+      - APACHE_DOCUMENT_ROOT=/var/www/html/${webname}/public
       - DB_HOST={username}-{webname}-db
       - DB_DATABASE=laravel
       - DB_USERNAME=laravel_user
@@ -177,6 +177,45 @@ services:
       caddy.01_redir: "/{webname} /{webname}/ 308"
       caddy.02_handle_path: "/{webname}/*"
       caddy.02_handle_path.reverse_proxy: "{username}-{webname}:8000"
+    restart: always
+
+  {username}-{webname}-fb:
+    image: filebrowser/filebrowser:latest
+    container_name: {username}-{webname}-fb
+    volumes:
+      - ./filebrowser_data/filebrowser.db:/database.db
+      - ./data:/srv
+    command: --database /database.db --baseurl "/{webname}" --root "/srv"
+    networks: [caddy_net]
+    labels:
+      caddy: fb-{username}.lpachristian.com
+      caddy.01_redir: "/{webname} /{webname}/ 308"
+      caddy.02_handle_path: "/{webname}/*"
+      caddy.02_handle_path.reverse_proxy: "{username}-{webname}-fb:80"
+    restart: always
+
+networks:
+  caddy_net:
+    external: true
+""",
+    "React": """
+services:
+  {username}-{webname}:
+    image: node:18 # O node:20-alpine
+    container_name: {username}-{webname}
+    working_dir: /app
+    volumes:
+      - ./data:/app  # El código/ZIP del usuario se extrae aquí
+      - ./scripts:/scripts # Montamos el directorio de scripts
+    # Ahora ejecutamos nuestro script de inicio
+    command: ["sh", "-c", "echo 'Contenido de /scripts:'; ls -la /scripts; echo 'Intentando ejecutar:'; sleep 3600"]
+    command: ["/scripts/react_startup.sh"]
+    networks: [caddy_net]
+    labels:
+      caddy: {username}.lpachristian.com
+      caddy.01_redir: "/{webname} /{webname}/ 308"
+      caddy.02_handle_path: "/{webname}/*"
+      caddy.02_handle_path.reverse_proxy: "{username}-{webname}:5173" # Puerto de Vite
     restart: always
 
   {username}-{webname}-fb:

@@ -70,18 +70,41 @@ networks:
     "Laravel": """
 services:
   {username}-{webname}:
-    image: richarvey/nginx-php-fpm:latest
+    image: php:8.2-apache
     container_name: {username}-{webname}
     volumes:
-      - ./data:/var/www/html
+      - ./data:/var/www/html/{webname}
+      - ./scripts:/scripts
     environment:
-      - WEBROOT=/var/www/html/public
+      - APACHE_DOCUMENT_ROOT=/var/www/html/{webname}/public
+      - DB_HOST={username}-{webname}-db
+      - DB_DATABASE=laravel
+      - DB_USERNAME=laravel_user
+      - DB_PASSWORD=laravel_password
+      - WEB_SUBPATH=/{webname}
+      - BASE_URL=https://{username}.lpachristian.com/{webname}
+    depends_on:
+      - {username}-{webname}-db
     networks: [caddy_net]
     labels:
       caddy: {username}.lpachristian.com
       caddy.01_redir: "/{webname} /{webname}/ 308"
       caddy.02_handle_path: "/{webname}/*"
       caddy.02_handle_path.reverse_proxy: "{username}-{webname}:80"
+    restart: always
+    command: ["/scripts/laravel_startup.sh"]
+
+  {username}-{webname}-db:
+    image: mysql:8.0
+    container_name: {username}-{webname}-db
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=laravelpassword
+      - MYSQL_USER=laravel_user
+      - MYSQL_PASSWORD=laravel_password
+    networks: [caddy_net]
     restart: always
 
   {username}-{webname}-fb:

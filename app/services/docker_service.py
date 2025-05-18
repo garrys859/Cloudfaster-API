@@ -3,6 +3,7 @@ import pathlib
 import zipfile
 import subprocess
 import textwrap
+import shutil
 import docker
 import yaml
 from core.config import get_settings
@@ -118,6 +119,40 @@ class DockerService:
             if not template:
                 raise ValueError(f"Tipo de servicio '{tipo_servicio}' no soportado")
             
+            # Preparar variables adicionales
+            env_vars = {}
+            
+            # Para proyectos Laravel, crear el script de inicio
+            if tipo_servicio == "Laravel":
+                # Crear el directorio de scripts si no existe
+                scripts_dir = target_dir / "scripts"
+                scripts_dir.mkdir(exist_ok=True)
+                
+                # Copiar el script de inicio de Laravel
+                laravel_script_src = pathlib.Path(__file__).parent / "scripts" / "laravel_startup.sh"
+                laravel_script_dst = scripts_dir / "laravel_startup.sh"
+                
+                # Asegurarnos que el directorio source existe
+                pathlib.Path(laravel_script_src).parent.mkdir(exist_ok=True)
+                
+                # Si el script no existe en el directorio de origen, crearlo
+                if not laravel_script_src.exists():
+                    laravel_service = LaravelService(self.user_base_path)
+                    script_content, script_env_vars = laravel_service.generate_startup_script(
+                        username=username, 
+                        webname=webname, 
+                        project_path=target_dir / "data"
+                    )
+                    laravel_script_src.write_text(script_content)
+                    laravel_script_src.chmod(0o755)
+                    env_vars.update(script_env_vars)
+                
+                # Copiar el script al directorio del proyecto
+                shutil.copy2(laravel_script_src, laravel_script_dst)
+                laravel_script_dst.chmod(0o755)
+                
+                print(f"Laravel startup script copiado a: {laravel_script_dst}")
+            
             # Generar el docker-compose.yml con los valores del usuario y servicio
             compose_text = template.format(username=username, webname=webname)
             compose_file_path = target_dir / "docker-compose.yml"
@@ -160,9 +195,25 @@ class DockerService:
                 # Preparar labels
                 labels = service_config.get('labels', {})
                 
-                # Crear el contenedor
-                print(f"Creando contenedor: {container_name}")
+                # Preparar environment (combinar variables específicas del servicio con las detectadas)
                 environment = service_config.get('environment', {})
+                if isinstance(environment, list):
+                    # Convertir lista de variables a diccionario
+                    env_dict = {}
+                    for env_item in environment:
+                        if isinstance(env_item, str) and '=' in env_item:
+                            key, value = env_item.split('=', 1)
+                            env_dict[key] = value
+                    # Agregar variables adicionales
+                    for key, value in env_vars.items():
+                        if key not in env_dict:
+                            env_dict[key] = value
+                    # Convertir de nuevo a lista
+                    environment = [f"{key}={value}" for key, value in env_dict.items()]
+                else:
+                    # Es un diccionario, simplemente actualizar
+                    environment.update(env_vars)
+                
                 ports = {}
                 if 'ports' in service_config:
                     for port_mapping in service_config['ports']:

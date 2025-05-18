@@ -63,3 +63,4 @@ yarn-error.log*
 # Directorios de archivos subidos
 uploads/ 
 acme*/
+__pycache__

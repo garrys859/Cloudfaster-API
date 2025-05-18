@@ -1,0 +1,16 @@
+{
+	email nagazuko@protonmail.com
+	acme_dns cloudflare {$CF_API_TOKEN}
+}
+
+lpachristian.com {
+	respond "Dominio principal" 200
+}
+
+api.lpachristian.com {
+	reverse_proxy cloudfaster-api:8000
+}
+
+*.lpachristian.com {
+	respond "Servicio no configurado para este subdominio. ¿Aquí debería de estar tu aplicación? Contacte con nosotros." 404
+}

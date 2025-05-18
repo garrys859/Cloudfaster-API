@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: cloudfaster-mysql
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cloudfaster
+      - MYSQL_USER=cloudfaster
+      - MYSQL_PASSWORD=qwerty-1234
+    volumes:
+      - mysql-data:/var/lib/mysql
+    expose:
+      - "3306"
+    networks:
+      - cloudfaster-network
+      - caddy_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # FastAPI Application
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cloudfaster-api
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - DB_HOST=db
+      - DB_USER=cloudfaster
+      - DB_PASSWORD=qwerty-1234
+      - DB_NAME=cloudfaster
+    volumes:
+      - /srv/cloudfaster/users:/srv/cloudfaster/users
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - cloudfaster-network
+      - caddy_net
+    
+    restart: unless-stopped
+
+networks:
+  cloudfaster-network:
+    driver: bridge
+  caddy_net:
+    external: true
+
+volumes:
+  mysql-data: 

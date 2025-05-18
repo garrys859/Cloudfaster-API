@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Entornos virtuales
+venv/
+ENV/
+.env
+.venv
+env/
+
+# Docker
+.docker/
+caddy_data/
+caddy_config/
+conf.d/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Datos de usuario y temporales
+/pepe/
+/srv/
+/tmp/
+.backup/
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.vs/
+
+# Archivos de configuración locales
+.env
+*.pem
+*.key
+*.pem.key
+
+# Directorios de archivos subidos
+uploads/ 
+acme*/

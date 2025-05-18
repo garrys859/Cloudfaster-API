@@ -2,6 +2,9 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
+# Instalar git y otras dependencias del sistema
+RUN apt-get update && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Copiar requirements.txt primero para aprovechar la caché de Docker
 COPY requirements.txt .
 

@@ -54,7 +54,7 @@ async def create_service(
                         detail="Username not found for the given user ID"
                     )
                 _, username = user
-                project_path = f"/srv/users/{username}/{nombre_servicio}/data"
+                project_path = f"/srv/cloudfaster/users/{username}/{nombre_servicio}/data"
                 os.makedirs(project_path, exist_ok=True)
                 result_clone = subprocess.run(
                     ["git", "clone", git_repo_url, project_path],

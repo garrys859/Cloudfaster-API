@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+# Verificar y reparar enlace simbólico /srv/users -> /srv/cloudfaster/users
+echo "Verificando enlace simbólico..."
+if [ ! -L /srv/users ] || [ "$(readlink /srv/users)" != "/srv/cloudfaster/users" ]; then
+    echo "Creando enlace simbólico /srv/users -> /srv/cloudfaster/users"
+    mkdir -p /srv/cloudfaster/users
+    rm -rf /srv/users
+    ln -sf /srv/cloudfaster/users /srv/users
+fi
+
 # Esperar a que MySQL esté listo
 echo "Esperando a que MySQL esté listo..."
 sleep 5

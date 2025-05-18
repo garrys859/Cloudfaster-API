@@ -11,6 +11,10 @@ COPY requirements.txt .
 # Instalar dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Crear directorios necesarios y enlace simbólico entre /srv/users y /srv/cloudfaster/users
+RUN mkdir -p /srv/cloudfaster/users && \
+    ln -sf /srv/cloudfaster/users /srv/users
+
 # Copiar el resto del código
 COPY . .
 

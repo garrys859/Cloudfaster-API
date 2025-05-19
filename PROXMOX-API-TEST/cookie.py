@@ -5,11 +5,11 @@ import json
 from urllib.parse import quote_plus
 
 # === Configuración ===
-HOST    = "https://119.12.242.157:8006"
+HOST    = "https://cloudfaster.app:8006"
 USER    = "root@pam"
-PASSWORD= "Xugvzkm05."
-NODE    = "jormundongor"
-VMID    = 9038
+PASSWORD= "cRoTa@123"
+NODE    = "sv4"
+VMID    = 108
 
 session = requests.Session()
 session.verify = False  # Deshabilitar verificación SSL si no hay cert válido

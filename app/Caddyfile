@@ -1,0 +1,48 @@
+{
+	email admin@cloudfaster.app
+}
+
+# ───── TLS con Cloudflare DNS-01 ─────
+(dns_cf) {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+}
+
+# ───── 1) Wildcard usuarios *.cloudfaster.app ─────
+*.cloudfaster.app {
+	import dns_cf
+
+	@svc path_regexp svc ^/([^/]+)       # captura /servicio
+
+	handle @svc {
+		#   {labels.0}     = subdominio  (usuario)
+		#   {http.regexp.svc.1} = servicio
+		reverse_proxy {labels.2}-{http.regexp.svc.1}:80
+	}
+
+	respond "Not Found" 404
+}
+
+# ───── 2) API externa ─────
+api.cloudfaster.app {
+	import dns_cf
+	reverse_proxy 127.0.0.1:8000
+}
+
+novnc.cloudfaster.app {
+        import dns_cf
+        reverse_proxy https://192.168.1.242:8006 {
+		#lb_policy ip_hash
+		#lb_try_duration 1s
+		#lb_try_interval 250ms
+		
+                transport http {
+                        tls_insecure_skip_verify
+                }
+
+		header_up Connection {http.request.header.Connection}
+		header_up Upgrade {http.request.header.Upgrade}
+        }
+
+}

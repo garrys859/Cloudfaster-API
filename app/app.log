@@ -1,0 +1,137 @@
+2025-05-17 11:37:36,458 - app.services.db_service - INFO - Database connection established
+2025-05-17 11:37:36,502 - app.services.db_service - INFO - Database connection established
+2025-05-17 11:37:36,657 - app.services.db_service - INFO - Database connection established
+2025-05-17 11:37:36,705 - app.services.db_service - INFO - Database connection established
+2025-05-17 12:28:28,623 - app.services.db_service - ERROR - Error executing query: Unread result found
+2025-05-17 12:37:07,328 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:37:07,547 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:37:07,896 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:37:08,113 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:38:18,863 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:38:19,074 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:38:37,598 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:38:37,811 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:14,299 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:14,644 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:50,206 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:50,418 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:52,359 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:52,579 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:52,909 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:39:53,140 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:40:56,095 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:40:56,316 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:41:08,234 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:41:08,447 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:20,142 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:20,359 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:21,892 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:22,109 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:22,430 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:43:22,647 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:05,215 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:05,434 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:06,936 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:07,155 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:07,493 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:07,990 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:47:46,848 - app.services.db_service - ERROR - Error fetching data: 1054 (42S22): Unknown column 'user_id' in 'field list'
+2025-05-17 12:52:58,488 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:52:58,702 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:52:59,023 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:52:59,236 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:53:40,549 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:53:40,768 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:53:41,089 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:53:41,307 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:54:22,597 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:54:22,808 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:54:23,131 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:54:23,345 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:54:48,894 - app.services.db_service - ERROR - Error fetching data: 1054 (42S22): Unknown column 'userid' in 'field list'
+2025-05-17 12:55:17,349 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:17,567 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:19,066 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:19,280 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:19,606 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:19,819 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:55:40,708 - app.services.db_service - ERROR - Error fetching data: 1054 (42S22): Unknown column 'userid' in 'field list'
+2025-05-17 12:56:33,047 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:33,359 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:35,143 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:35,356 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:35,674 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:35,888 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 12:56:48,336 - app.services.db_service - ERROR - Error fetching data: 1054 (42S22): Unknown column 'enabled' in 'field list'
+2025-05-17 13:01:57,427 - app.services.db_service - ERROR - Error fetching data: 1054 (42S22): Unknown column 'api_key' in 'where clause'
+2025-05-17 13:02:41,079 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:02:41,291 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:02:41,763 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:02:42,253 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:03:39,310 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:03:39,613 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:03:39,932 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:03:40,141 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:04:13,216 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:04:13,427 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:04:13,743 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:04:13,956 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:04:31,949 - app.services.db_service - ERROR - Error fetching data: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key = '48e701d55d8c8a4846f7b7ee5b846b87'' at line 3
+2025-05-17 13:06:29,476 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:06:29,688 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:06:30,005 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:06:30,431 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:11,558 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:11,802 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:12,507 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:12,717 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:22,809 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:23,118 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:23,442 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:23,658 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:45,518 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:45,728 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:46,044 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:07:46,253 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:08:14,266 - app.services.docker_service - INFO - Extracting /tmp/tmpqzk9m7zk.zip to /srv/1/robincillo/data
+2025-05-17 13:08:16,394 - app.services.docker_service - ERROR - Error deploying static service: Command '['docker', 'compose', 'up', '-d']' returned non-zero exit status 125.
+2025-05-17 13:08:16,394 - app.api.docker_routes - ERROR - Error creating service: Command '['docker', 'compose', 'up', '-d']' returned non-zero exit status 125.
+2025-05-17 13:22:25,434 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:22:25,934 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:22:26,355 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:22:26,571 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:23:03,396 - app.services.docker_service - INFO - Extracting /tmp/tmp2gdc0xi_.zip to /srv/1/robincillo/data
+2025-05-17 13:23:04,032 - app.services.docker_service - ERROR - Error deploying static service: Command '['config', 'init', '--database', '/srv/filebrowser.db']' in image 'filebrowser/filebrowser' returned non-zero exit status 1: b'2025/05/17 13:23:03 /srv/filebrowser.db already exists\n'
+2025-05-17 13:23:04,032 - app.api.docker_routes - ERROR - Error creating service: Command '['config', 'init', '--database', '/srv/filebrowser.db']' in image 'filebrowser/filebrowser' returned non-zero exit status 1: b'2025/05/17 13:23:03 /srv/filebrowser.db already exists\n'
+2025-05-17 13:25:06,215 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:25:06,698 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:25:07,204 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:25:07,430 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:28:19,602 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:28:19,815 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:28:20,139 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:28:20,352 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:28:29,530 - app.services.docker_service - INFO - Extracting /tmp/tmp_1zr_45z.zip to /srv/1/robincillo/data
+2025-05-17 13:28:29,533 - app.services.docker_service - INFO - Filebrowser database already exists at /srv/1/robincillo/filebrowser_data/filebrowser.db
+2025-05-17 13:51:24,034 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:24,259 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:24,589 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:24,810 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:41,143 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:41,370 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:41,699 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:51:41,920 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:52:18,330 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:52:18,543 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:52:18,875 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:52:19,089 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:53:42,318 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:53:42,537 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:53:42,869 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:53:43,093 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:23,822 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:24,036 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:25,546 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:25,763 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:26,088 - app.services.db_service - INFO - Database connection pool initialized
+2025-05-17 13:58:26,303 - app.services.db_service - INFO - Database connection pool initialized
